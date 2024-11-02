@@ -38,6 +38,7 @@
     y: 0,
     zoom: 1,
     fit: 1,
+    rotate: 0,
     recentReset: false,
     dragging: false,
   };
@@ -255,7 +256,7 @@
 </script>
 
 <div
-  style="--media-viewer-scale: {state.zoom}; --media-viewer-x: {100 *
+  style="--media-viewer-scale: {state.zoom}; --media-viewer-rotate: {state.rotate}; --media-viewer-x: {100 *
     state.x}%; --media-viewer-y: {100 *
     state.y}%; --media-viewer-minimap-scale: {state.minimap
     .scale}; --media-viewer-minimap-width: {state.minimap
@@ -326,6 +327,20 @@
                 ]
               : [{ value: state.fit, label: "Fit" }]}
           />
+          <RangeSlider
+            name="Rotate"
+            disabled={false}
+            min={-180}
+            max={180}
+            bind:value={state.rotate}
+            marks={[
+              { value: -180, label: "-180" },
+              { value: -90, label: "-90" },
+              { value: 0, label: "0" },
+              { value: 90, label: "90" },
+              { value: 180, label: "180" },
+            ]}
+          />
         </EnhancementControls>
       {:else}
         <RangeSlider
@@ -363,7 +378,8 @@
       translate(
         calc(-1 * var(--media-viewer-x)),
         calc(-1 * var(--media-viewer-y))
-      );
+      )
+      rotate(var(--media-viewer-rotate)deg);
     transform-origin: 0 0;
     position: absolute;
     touch-action: none;
