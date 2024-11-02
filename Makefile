@@ -9,6 +9,20 @@ init: ## Build local development environment
 	@$(PYTHON_EXEC) jupyter labextension develop --overwrite --no-build .
 	@$(PYTHON_EXEC) jupyter nbextension install --sys-prefix --symlink --overwrite --py qsl
 	@$(PYTHON_EXEC) jupyter nbextension enable --sys-prefix --py qsl
+
+install-prereqs: install-rustup install-wasm-pack install-jupyterlab-builder
+
+# Installation from rust-lang.org
+install-rustup:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+install-wasm-pack:
+	cargo install wasm-pack
+
+install-jupyterlab-builder:
+	pipenv install jupyterlab-builder
+
+
 check:  ## Check code for formatting, linting, etc.
 	@$(PYTHON_EXEC) pytest -s -v $(TEST_SCOPE)
 	@$(PYTHON_EXEC) mypy qsl
@@ -22,7 +36,7 @@ clean:  ## Clean out all build files.
 	rm -rf dist build qslwidgets/lib qslwidgets/dist \
 		qsl/ui/labextension \
 		qsl/ui/nbextension/index.js* .*_cache
-lab:  ## Launch a jupyter lab instance 
+lab:  ## Launch a jupyter lab instance
 	@$(PYTHON_EXEC) jupyter lab
 notebook:  ## Launch a jupyter notebook instance
 	@$(PYTHON_EXEC) jupyter notebook
