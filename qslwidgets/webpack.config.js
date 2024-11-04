@@ -66,7 +66,7 @@ module.exports = (env) => {
         "..",
         ".venv",
         "lib",
-        "python3.7",
+        "python3.10",
         "site-packages",
         "jupyterlab",
         "staging"

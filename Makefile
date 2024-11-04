@@ -5,7 +5,8 @@ TEST_SCOPE=tests/
 init: ## Build local development environment
 	mkdir -p .venv
 	yarn --cwd qslwidgets install
-	pipenv install
+	pipenv install --python 3.10
+	export PYTHONPATH=$(pwd)
 	@$(PYTHON_EXEC) jupyter labextension develop --overwrite --no-build .
 	@$(PYTHON_EXEC) jupyter nbextension install --sys-prefix --symlink --overwrite --py qsl
 	@$(PYTHON_EXEC) jupyter nbextension enable --sys-prefix --py qsl
@@ -22,7 +23,7 @@ clean:  ## Clean out all build files.
 	rm -rf dist build qslwidgets/lib qslwidgets/dist \
 		qsl/ui/labextension \
 		qsl/ui/nbextension/index.js* .*_cache
-lab:  ## Launch a jupyter lab instance 
+lab:  ## Launch a jupyter lab instance
 	@$(PYTHON_EXEC) jupyter lab
 notebook:  ## Launch a jupyter notebook instance
 	@$(PYTHON_EXEC) jupyter notebook

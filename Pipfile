@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-jupyterlab = "*"
 pytest = "*"
 pytest-cov = "*"
 nbval = "*"
@@ -21,6 +20,10 @@ mypy = "*"
 types-setuptools = "*"
 pylint = "*"
 opencv-python-headless = "*"
+jupyterlab = "*"
+jupyter-builder = "*"
+ipywidgets = "*"
+filetype = "*"
 
 [dev-packages]
 

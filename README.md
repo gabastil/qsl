@@ -2,7 +2,7 @@
 
 ![QSL Screenshot](https://raw.githubusercontent.com/faustomorales/qsl/main/docs/screenshot.png)
 
-QSL is a simple, open-source media labeling tool that you can use as a Jupyter widget. More information available at [https://qsl.robinbay.com](https://qsl.robinbay.com). It supports:
+QSL is a simple, **open**-source media labeling tool that you can use as a Jupyter widget. More information available at [https://qsl.robinbay.com](https://qsl.robinbay.com). It supports:
 
 - Bounding box, polygon, and segmentation mask labeling for images and videos (with support for video segments).
 - Point and range-based time-series labeling.
@@ -293,3 +293,10 @@ You can launch the same labeling interface from the command line using `qsl labe
 1. Create a local development environment using `make init`
 2. Run widget development with live re-building using `make develop`
 3. Run a Jupyter Lab instance using `make lab`. Changes to the JavaScript/TypeScript require a full refresh to take effect.
+
+## Development: dependencies
+
+1. `make install-prereqs`: invokes these individual commands
+   1. `make install-rustup`
+   2. `make install-wasm-pack`
+   3. `make install-jupyterlab-builder`
